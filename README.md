@@ -1,0 +1,1 @@
+This is the project for my Univeristy module ITEHA, this module being enterprice C# programming. THe aim of this project was the create a webbased application that interfances with a server and that server with a database.
