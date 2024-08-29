@@ -5,28 +5,28 @@ namespace SAOnlineMart.ViewModels
     public class RegisterViewModel
     {
         [Required]
-        public string UserName { get; set; }
+        public required string UserName { get; set; }
 
         [Required]
         [EmailAddress]
-        public string Email { get; set; }
+        public required string Email { get; set; }
 
         [Required]
         [MinLength(6)]
-        public string Password { get; set; }
+        public required string Password { get; set; }
 
         [Required]
         [Compare("Password", ErrorMessage = "Passwords do not match.")]
-        public string ConfirmPassword { get; set; }
+        public required string ConfirmPassword { get; set; }
 
         [Required]
-        public string Address { get; set; }
+        public required string Address { get; set; }
 
         [Required]
         [Phone]
-        public string Phone { get; set; }
+        public required string Phone { get; set; }
 
         [Required]
-        public string Role { get; set; }    
+        public required string Role { get; set; }    
     }
 }
