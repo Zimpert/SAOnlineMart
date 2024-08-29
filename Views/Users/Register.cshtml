@@ -9,17 +9,17 @@
 <form asp-action="Create">
     <div class="form-group">
         <label asp-for="UserName" class="control-label"></label>
-        <input asp-for="UserName" class="form-control" />
+        <input required asp-for="UserName" class="form-control" />
         <span asp-validation-for="UserName" class="text-danger"></span>
     </div>
     <div class="form-group">
         <label asp-for="Email" class="control-label"></label>
-        <input asp-for="Email" class="form-control" />
+        <input required asp-for="Email" class="form-control" />
         <span asp-validation-for="Email" class="text-danger"></span>
     </div>
     <div class="form-group">
         <label asp-for="Address" class="control-label"></label>
-        <input asp-for="Address" class="form-control" />
+        <input required asp-for="Address" class="form-control" />
         <span asp-validation-for="Address" class="text-danger"></span>
     </div>
     <div class="form-group">
@@ -29,13 +29,18 @@
     </div>
     <div class="form-group">
         <label asp-for="Password" class="control-label"></label>
-        <input asp-for="Password" type="password" class="form-control" />
+        <input required asp-for="Password" type="password" class="form-control" />
         <span asp-validation-for="Password" class="text-danger"></span>
     </div>
     <div class="form-group">
+        <label asp-for="ConfirmPassword" class="control-label"></label>
+        <input required asp-for="ConfirmPassword" type="password" class="form-control" />
+        <span asp-validation-for="ConfirmPassword" class="text-danger"></span>
+    </div>
+    <div class="form-group">
         <label asp-for="Role" class="control-label"></label>
-        <select asp-for="Role" class="form-control">
-            <option value="">Select Role</option>
+        <select required asp-for="Role" class="form-control">
+            <option value="" disabled selected>Select Role</option>
             <option value="Buyer">Buyer</option>
             <option value="Seller">Seller</option>
         </select>
@@ -47,4 +52,3 @@
 </form>
 
 <a asp-controller="Home" asp-action="Index">Back to Home</a>
-

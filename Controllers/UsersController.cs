@@ -23,7 +23,8 @@ namespace SAOnlineMart.Controllers
         // GET: Users
         public async Task<IActionResult> Index()
         {
-            return View(await _context.Users.ToListAsync());
+            // Optional: You can remove this method if you don't need it anymore
+            return RedirectToAction("Index", "Home");
         }
 
         // GET: Users/Details
@@ -51,8 +52,6 @@ namespace SAOnlineMart.Controllers
         }
 
         // POST: Users/Create
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
-
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("UserID,UserName,Email,Address,Phone,Password,Role")] User user)
@@ -61,7 +60,7 @@ namespace SAOnlineMart.Controllers
             {
                 _context.Add(user);
                 await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
+                return RedirectToAction("Index", "Home"); // Redirect to Home/Index after creation
             }
             return View(user);
         }
@@ -83,8 +82,6 @@ namespace SAOnlineMart.Controllers
         }
 
         // POST: Users/Edit
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
-
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(int id, [Bind("UserID,UserName,Email,Address,Phone,Password,Role")] User user)
@@ -112,7 +109,7 @@ namespace SAOnlineMart.Controllers
                         throw;
                     }
                 }
-                return RedirectToAction(nameof(Index));
+                return RedirectToAction("Index", "Home"); // Redirect to Home/Index after editing
             }
             return View(user);
         }
@@ -147,7 +144,7 @@ namespace SAOnlineMart.Controllers
             }
 
             await _context.SaveChangesAsync();
-            return RedirectToAction(nameof(Index));
+            return RedirectToAction("Index", "Home"); // Redirect to Home/Index after deletion
         }
 
         private bool UserExists(int id)
@@ -189,27 +186,35 @@ namespace SAOnlineMart.Controllers
         // POST: Users/Register
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Register([Bind("UserName,Email,Password,ConfirmPassword,Address,Phone")] RegisterViewModel model)
+        public async Task<IActionResult> Register([Bind("UserName,Email,Password,ConfirmPassword,Address,Phone,Role")] RegisterViewModel model)
         {
             if (ModelState.IsValid)
             {
-                // Add user registration logic here
+                // Ensure the password and confirm password match
+                if (model.Password != model.ConfirmPassword)
+                {
+                    ModelState.AddModelError("", "Passwords do not match.");
+                    return View(model);
+                }
+
                 var user = new User
                 {
                     UserName = model.UserName,
                     Email = model.Email,
-                    Password = model.Password, // Must implement password hashing
                     Address = model.Address,
                     Phone = model.Phone,
-                    Role = "buyer" // Default role
+                    Password = model.Password, // Consider adding password hashing here
+                    Role = model.Role
                 };
 
                 _context.Users.Add(user);
                 await _context.SaveChangesAsync();
-                return RedirectToAction("Index", "Home"); // Redirect after successful registration
+
+                // Redirect to the login page after successful registration
+                return RedirectToAction("Login", "Users");
             }
+
             return View(model);
         }
-
     }
 }
