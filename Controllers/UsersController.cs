@@ -20,13 +20,6 @@ namespace SAOnlineMart.Controllers
             _context = context;
         }
 
-        // GET: Users
-        public async Task<IActionResult> Index()
-        {
-            // Optional: You can remove this method if you don't need it anymore
-            return RedirectToAction("Index", "Home");
-        }
-
         // GET: Users/Details
         public async Task<IActionResult> Details(int? id)
         {
@@ -178,6 +171,7 @@ namespace SAOnlineMart.Controllers
         }
 
         // GET: Users/Register
+        [HttpGet]
         public IActionResult Register()
         {
             return View();

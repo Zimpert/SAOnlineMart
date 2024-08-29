@@ -15,7 +15,7 @@ namespace SAOnlineMart.ViewModels
         public required string Address { get; set; }
 
         [Required]
-        [RegularExpression(@"^\d{10}$", ErrorMessage = "Please enter a valid phone number (10 digits).")]
+        [Phone]
         public required string Phone { get; set; }
 
         [Required]
