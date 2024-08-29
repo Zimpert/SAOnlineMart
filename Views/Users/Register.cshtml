@@ -1,4 +1,4 @@
-﻿@model SAOnlineMart.Models.User
+﻿@model SAOnlineMart.ViewModels.RegisterViewModel
 
 @{
     ViewData["Title"] = "Register";
@@ -34,7 +34,11 @@
     </div>
     <div class="form-group">
         <label asp-for="Role" class="control-label"></label>
-        <input asp-for="Role" class="form-control" />
+        <select asp-for="Role" class="form-control">
+            <option value="">Select Role</option>
+            <option value="Buyer">Buyer</option>
+            <option value="Seller">Seller</option>
+        </select>
         <span asp-validation-for="Role" class="text-danger"></span>
     </div>
     <div class="form-group">

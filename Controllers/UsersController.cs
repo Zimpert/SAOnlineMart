@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using SAOnlineMart.Data;
 using SAOnlineMart.Models;
+using SAOnlineMart.ViewModels;
 
 namespace SAOnlineMart.Controllers
 {
@@ -179,6 +180,36 @@ namespace SAOnlineMart.Controllers
             return View(user);
         }
 
+        // GET: Users/Register
+        public IActionResult Register()
+        {
+            return View();
+        }
+
+        // POST: Users/Register
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Register([Bind("UserName,Email,Password,ConfirmPassword,Address,Phone")] RegisterViewModel model)
+        {
+            if (ModelState.IsValid)
+            {
+                // Add user registration logic here
+                var user = new User
+                {
+                    UserName = model.UserName,
+                    Email = model.Email,
+                    Password = model.Password, // Must implement password hashing
+                    Address = model.Address,
+                    Phone = model.Phone,
+                    Role = "buyer" // Default role
+                };
+
+                _context.Users.Add(user);
+                await _context.SaveChangesAsync();
+                return RedirectToAction("Index", "Home"); // Redirect after successful registration
+            }
+            return View(model);
+        }
 
     }
 }

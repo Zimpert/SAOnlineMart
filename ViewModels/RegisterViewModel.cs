@@ -25,5 +25,8 @@ namespace SAOnlineMart.ViewModels
         [Required]
         [Phone]
         public string Phone { get; set; }
+
+        [Required]
+        public string Role { get; set; }    
     }
 }
