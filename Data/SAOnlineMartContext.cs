@@ -28,6 +28,21 @@ namespace SAOnlineMart.Data
                 .HasOne(oi => oi.Product)
                 .WithMany()
                 .HasForeignKey(oi => oi.ProductID);
+
+            // Specify for decimal properties
+            // added due to warnings raised during azure database update
+            modelBuilder.Entity<Order>()
+                .Property(o => o.TotalAmount)
+                .HasColumnType("decimal(18,2)");
+
+            modelBuilder.Entity<OrderItem>()
+                .Property(oi => oi.Price)
+                .HasColumnType("decimal(18,2)");
+
+            modelBuilder.Entity<Product>()
+                .Property(p => p.Price)
+                .HasColumnType("decimal(18,2)");
+
         }
     }
 }
