@@ -153,5 +153,32 @@ namespace SAOnlineMart.Controllers
         {
             return _context.Users.Any(e => e.UserID == id);
         }
+
+        // GET: Users/Login
+        public IActionResult Login()
+        {
+            return View();
+        }
+
+        // POST: Users/Login
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Login([Bind("Email,Password")] User user)
+        {
+            var existingUser = await _context.Users
+                .FirstOrDefaultAsync(u => u.Email == user.Email && u.Password == user.Password);
+
+            if (existingUser != null)
+            {
+                // Set session or authentication cookie here
+                // For now, redirect to the home page
+                return RedirectToAction("Index", "Home");
+            }
+
+            ModelState.AddModelError("", "Invalid login attempt.");
+            return View(user);
+        }
+
+
     }
 }
