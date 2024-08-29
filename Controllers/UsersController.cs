@@ -26,7 +26,7 @@ namespace SAOnlineMart.Controllers
             return View(await _context.Users.ToListAsync());
         }
 
-        // GET: Users/Details/5
+        // GET: Users/Details
         public async Task<IActionResult> Details(int? id)
         {
             if (id == null)
@@ -52,7 +52,7 @@ namespace SAOnlineMart.Controllers
 
         // POST: Users/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
+
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("UserID,UserName,Email,Address,Phone,Password,Role")] User user)
@@ -66,7 +66,7 @@ namespace SAOnlineMart.Controllers
             return View(user);
         }
 
-        // GET: Users/Edit/5
+        // GET: Users/Edit
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
@@ -82,9 +82,9 @@ namespace SAOnlineMart.Controllers
             return View(user);
         }
 
-        // POST: Users/Edit/5
+        // POST: Users/Edit
         // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
+
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(int id, [Bind("UserID,UserName,Email,Address,Phone,Password,Role")] User user)
@@ -117,7 +117,7 @@ namespace SAOnlineMart.Controllers
             return View(user);
         }
 
-        // GET: Users/Delete/5
+        // GET: Users/Delete
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null)
@@ -135,7 +135,7 @@ namespace SAOnlineMart.Controllers
             return View(user);
         }
 
-        // POST: Users/Delete/5
+        // POST: Users/Delete
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)

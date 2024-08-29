@@ -25,7 +25,7 @@ namespace SAOnlineMart.Controllers
             return View(await _context.Products.ToListAsync());
         }
 
-        // GET: Products/Details/5
+        // GET: Products/Details
         public async Task<IActionResult> Details(int? id)
         {
             if (id == null)
@@ -51,7 +51,7 @@ namespace SAOnlineMart.Controllers
 
         // POST: Products/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
+
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("ProductID,Name,Description,Price,StockQuantity,ImageURL")] Product product)
@@ -83,7 +83,7 @@ namespace SAOnlineMart.Controllers
 
         // POST: Products/Edit/5
         // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
+
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(int id, [Bind("ProductID,Name,Description,Price,StockQuantity,ImageURL")] Product product)
@@ -116,7 +116,7 @@ namespace SAOnlineMart.Controllers
             return View(product);
         }
 
-        // GET: Products/Delete/5
+        // GET: Products/Delete
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null)
@@ -134,7 +134,7 @@ namespace SAOnlineMart.Controllers
             return View(product);
         }
 
-        // POST: Products/Delete/5
+        // POST: Products/Delete
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
