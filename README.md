@@ -72,13 +72,9 @@ The application uses ASP.NET Core MVC for the web interface, Entity Framework Co
 
 If you would like to contribute to this project, please fork the repository and submit a pull request with your changes. For detailed guidelines, refer to the [CONTRIBUTING.md](CONTRIBUTING.md) file.
 
-## License
-
-This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
-
 ## Acknowledgements
 
-- Special thanks to the instructors and peers of the ITEHA module for their support and feedback.
+- Special thanks to the instructor and peers of the ITEHA3-B33 module for their support and feedback.
 - This project uses third-party libraries and frameworks. Refer to their respective documentation for more details.
 
 ---
