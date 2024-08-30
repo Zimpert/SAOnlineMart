@@ -28,13 +28,13 @@
                             @if (userRole == "Buyer")
                             {
                                 <li class="nav-item">
-                                    <a class="nav-link text-dark" asp-area="" asp-controller="Products" asp-action="Index">Products</a>
+                                    <a class="nav-link text-dark" asp-area="" asp-controller="BuyerProducts" asp-action="Index">Products</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link text-dark" asp-controller="Cart" asp-action="Index">Cart</a>
+                                    <a class="nav-link text-dark" asp-controller="BuyerProducts" asp-action="Cart">Cart</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link text-dark" asp-controller="Checkout" asp-action="Index">Checkout</a>
+                                    <a class="nav-link text-dark" asp-controller="BuyerProducts" asp-action="Checkout">Checkout</a>
                                 </li>
                             }
                             else if (userRole == "Admin")

@@ -1,0 +1,41 @@
+﻿@model IEnumerable<SAOnlineMart.Models.Product>
+
+@{
+    ViewBag.Title = "Buyer Products";
+}
+
+<h2>Buyer Products</h2>
+
+@if (TempData["SuccessMessage"] != null)
+{
+    <div class="alert alert-success">
+        @TempData["SuccessMessage"]
+    </div>
+}
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Product Name</th>
+            <th>Price</th>
+            <th>Stock Quantity</th>
+            <th>Action</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var product in Model)
+        {
+            <tr>
+                <td>@product.Name</td>
+                <td>@product.Price</td>
+                <td>@product.StockQuantity</td>
+                <td>
+                    <form asp-action="AddToCart" asp-controller="BuyerProducts" method="post">
+                        <input type="hidden" name="productId" value="@product.ProductID" />
+                        <button type="submit" class="btn btn-primary">Add to Cart</button>
+                    </form>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

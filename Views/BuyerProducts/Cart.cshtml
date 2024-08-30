@@ -1,0 +1,40 @@
+﻿@model List<SAOnlineMart.Models.Product>
+
+@{
+    ViewBag.Title = "Cart";
+}
+
+<h2>Your Cart</h2>
+
+@if (Model.Count == 0)
+{
+    <p>Your cart is empty.</p>
+}
+else
+{
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Product Name</th>
+                <th>Price</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var product in Model)
+            {
+                <tr>
+                    <td>@product.Name</td>
+                    <td>@product.Price</td>
+                    <td>
+                        <form asp-action="RemoveFromCart" asp-controller="BuyerProducts" method="post">
+                            <input type="hidden" name="productId" value="@product.ProductID" />
+                            <button type="submit" class="btn btn-danger">Remove</button>
+                        </form>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+<a class="btn btn-primary" asp-action="Checkout" asp-controller="BuyerProducts">Proceed to Checkout</a>
