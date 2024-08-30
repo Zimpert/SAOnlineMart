@@ -1,0 +1,39 @@
+﻿@model IEnumerable<SAOnlineMart.Models.SellerOrderItemViewModel>
+
+@{
+    ViewData["Title"] = "Due Orders";
+}
+
+<h1>Due Orders</h1>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Order ID</th>
+            <th>Product Name</th>
+            <th>Quantity</th>
+            <th>Price</th>
+            <th>Buyer Address</th>
+            <th>Order Date</th>
+            <th>Status</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.OrderID</td>
+                <td>@item.ProductName</td>
+                <td>@item.Quantity</td>
+                <td>@item.Price</td>
+                <td>@item.BuyerAddress</td>
+                <td>@item.OrderDate</td>
+                <td>@item.Status</td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@item.OrderID" class="btn btn-primary">Edit Status</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
