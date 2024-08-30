@@ -163,6 +163,7 @@ namespace SAOnlineMart.Controllers
                 // Set session variables
                 HttpContext.Session.SetString("UserName", existingUser.UserName);
                 HttpContext.Session.SetString("UserRole", existingUser.Role);
+                HttpContext.Session.SetInt32("UserID", existingUser.UserID);
 
                 // Redirect based on role
                 switch (existingUser.Role)

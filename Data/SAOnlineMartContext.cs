@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using NuGet.Protocol.Plugins;
 using SAOnlineMart.Models;
 
 namespace SAOnlineMart.Data
@@ -28,6 +29,12 @@ namespace SAOnlineMart.Data
                 .HasOne(oi => oi.Product)
                 .WithMany()
                 .HasForeignKey(oi => oi.ProductID);
+
+            modelBuilder.Entity<Product>()
+                .HasOne(p => p.Seller)
+                .WithMany()
+                .HasForeignKey(p => p.SellerID)
+                .OnDelete(DeleteBehavior.Restrict); // stop delete of seller if has products
 
             // Specify for decimal properties
             // added due to warnings raised during azure database update

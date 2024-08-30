@@ -31,7 +31,7 @@ namespace SAOnlineMart
                 options.Cookie.IsEssential = true;
             });
 
-            // Configure authentication and authorization
+            // Configure authentication and authorisation
             builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
                 .AddCookie(options =>
                 {
