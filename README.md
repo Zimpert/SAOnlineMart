@@ -1,5 +1,3 @@
-Certainly! A good README file should provide a clear overview of the project, its purpose, installation instructions, usage guidelines, and any other relevant information. Here's a revised version of your README that includes additional details to help users understand and use your project effectively.
-
 ---
 
 # SAOnlineMart - Enterprise C# Programming Project
