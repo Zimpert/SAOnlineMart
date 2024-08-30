@@ -191,6 +191,7 @@ namespace SAOnlineMart.Controllers
             // Clear session
             HttpContext.Session.Remove("UserName");
             HttpContext.Session.Remove("UserRole");
+            HttpContext.Session.Remove("UserID");
 
             return RedirectToAction("Index", "Home");
         }
