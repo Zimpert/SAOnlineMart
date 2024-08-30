@@ -7,7 +7,6 @@ using SAOnlineMart.Models;
 
 namespace SAOnlineMart.Controllers
 {
-    [Authorize(Roles = "Admin")]
     public class AdminOrderItemsController : Controller
     {
         private readonly SAOnlineMartContext _context;
