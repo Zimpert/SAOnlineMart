@@ -1,9 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using SAOnlineMart.Data;
 using SAOnlineMart.Models;
@@ -161,13 +160,38 @@ namespace SAOnlineMart.Controllers
 
             if (existingUser != null)
             {
-                // Set session or authentication cookie here
-                // For now, redirect to the home page
-                return RedirectToAction("Index", "Home");
+                // Set session variables
+                HttpContext.Session.SetString("UserName", existingUser.UserName);
+                HttpContext.Session.SetString("UserRole", existingUser.Role);
+
+                // Redirect based on role
+                switch (existingUser.Role)
+                {
+                    case "Buyer":
+                        return RedirectToAction("Index", "Home");
+                    case "Admin":
+                        return RedirectToAction("Index", "Home");
+                    case "Seller":
+                        return RedirectToAction("Index", "Home");
+                    default:
+                        return RedirectToAction("Index", "Home");
+                }
             }
 
             ModelState.AddModelError("", "Invalid login attempt.");
             return View(user);
+        }
+
+        // POST: Users/Logout
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public IActionResult Logout()
+        {
+            // Clear session
+            HttpContext.Session.Remove("UserName");
+            HttpContext.Session.Remove("UserRole");
+
+            return RedirectToAction("Index", "Home");
         }
 
         // GET: Users/Register

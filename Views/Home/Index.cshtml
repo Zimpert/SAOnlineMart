@@ -1,8 +1,19 @@
 ﻿@{
     ViewData["Title"] = "Home Page";
+    var userName = Context.Session.GetString("UserName");
+    var userRole = Context.Session.GetString("UserRole");
 }
 
 <div class="text-center">
-    <h1 class="display-4">This is the landing page.</h1>
-    <p>I will place the landing page here.</p>
+    <h1 class="display-4">
+        @if (!string.IsNullOrEmpty(userName))
+        {
+            <text>Hello, @userName!</text>
+        }
+        else
+        {
+            <text>Hello user. This is SAOnlineMart</text>
+        }
+    </h1>
+    <p>insert role based stuff here</p>
 </div>

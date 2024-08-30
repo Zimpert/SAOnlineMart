@@ -1,5 +1,11 @@
+using Microsoft.AspNetCore.Builder;
+using Microsoft.AspNetCore.Hosting;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Hosting;
 using Microsoft.EntityFrameworkCore;
 using SAOnlineMart.Data;
+using System;
+using Microsoft.AspNetCore.Authentication.Cookies;
 
 namespace SAOnlineMart
 {
@@ -16,13 +22,36 @@ namespace SAOnlineMart
             builder.Services.AddDbContext<SAOnlineMartContext>(options =>
                 options.UseSqlServer(builder.Configuration.GetConnectionString("SAOnlineMartContext")));
 
+            // Configure session
+            builder.Services.AddDistributedMemoryCache();
+            builder.Services.AddSession(options =>
+            {
+                options.IdleTimeout = TimeSpan.FromMinutes(30);
+                options.Cookie.HttpOnly = true;
+                options.Cookie.IsEssential = true;
+            });
+
+            // Configure authentication and authorization
+            builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
+                .AddCookie(options =>
+                {
+                    options.LoginPath = "/Users/Login";
+                    options.LogoutPath = "/Users/Logout";
+                });
+
+            builder.Services.AddAuthorization(options =>
+            {
+                options.AddPolicy("Admin", policy => policy.RequireRole("Admin"));
+                options.AddPolicy("Seller", policy => policy.RequireRole("Seller"));
+                options.AddPolicy("Buyer", policy => policy.RequireRole("Buyer"));
+            });
+
             var app = builder.Build();
 
             // Configure the HTTP request pipeline.
             if (!app.Environment.IsDevelopment())
             {
                 app.UseExceptionHandler("/Home/Error");
-                // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
                 app.UseHsts();
             }
 
@@ -31,7 +60,9 @@ namespace SAOnlineMart
 
             app.UseRouting();
 
+            app.UseAuthentication();
             app.UseAuthorization();
+            app.UseSession(); // Ensure session middleware is added here
 
             app.MapControllerRoute(
                 name: "default",

@@ -28,5 +28,23 @@ namespace SAOnlineMart.Controllers
         {
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
         }
+        // login actions
+        public IActionResult BuyerHome()
+        {
+            ViewData["Greeting"] = $"Hello {HttpContext.Session.GetString("UserName")}";
+            return View();
+        }
+
+        public IActionResult AdminHome()
+        {
+            ViewData["Greeting"] = $"Hello {HttpContext.Session.GetString("UserName")}";
+            return View();
+        }
+
+        public IActionResult SellerHome()
+        {
+            ViewData["Greeting"] = $"Hello {HttpContext.Session.GetString("UserName")}";
+            return View();
+        }
     }
 }

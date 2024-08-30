@@ -1,4 +1,8 @@
-﻿<!DOCTYPE html>
+﻿@{
+    var userName = Context.Session.GetString("UserName");
+    var userRole = Context.Session.GetString("UserRole");
+}
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="utf-8" />
@@ -22,8 +26,39 @@
                         <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-controller="Products" asp-action="Index">Products</a>
                         </li>
-                        @if (User.Identity.IsAuthenticated)
-                        {
+                        @if (!string.IsNullOrEmpty(userName))
+                        {                       
+                            @if (userRole == "Buyer")
+                            {
+                                <li class="nav-item">
+                                    <a class="nav-link text-dark" asp-controller="Cart" asp-action="Index">Cart</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link text-dark" asp-controller="Checkout" asp-action="Index">Checkout</a>
+                                </li>
+                            }
+                            else if (userRole == "Admin")
+                            {
+                                <li class="nav-item">
+                                    <a class="nav-link text-dark" asp-controller="Users" asp-action="Index">Manage Users</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link text-dark" asp-controller="Products" asp-action="Index">Manage Products</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link text-dark" asp-controller="Orders" asp-action="Index">Manage Orders</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link text-dark" asp-controller="OrderItems" asp-action="Index">Manage OrderItems</a>
+                                </li>
+                            }
+                            else if (userRole == "Seller")
+                            {
+                                <li class="nav-item">
+                                    <a class="nav-link text-dark" asp-controller="SellerProducts" asp-action="SellerProducts">My Products</a>
+                                </li>
+                            }
+
                             <li class="nav-item">
                                 <form asp-controller="Users" asp-action="Logout" method="post" class="nav-link text-dark">
                                     <button type="submit" class="btn btn-link">Logout</button>
