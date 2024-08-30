@@ -1,0 +1,43 @@
+﻿@model IEnumerable<SAOnlineMart.Models.User>
+
+@{
+    ViewData["Title"] = "Users";
+}
+
+<h1>Users</h1>
+
+<p>
+    <a class="btn btn-primary" asp-controller="AdminUsers" asp-action="Create">Create New User</a>
+</p>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>User Name</th>
+            <th>Email</th>
+            <th>Address</th>
+            <th>Phone</th>
+            <th>Role</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.UserName</td>
+                <td>@item.Email</td>
+                <td>@item.Address</td>
+                <td>@item.Phone</td>
+                <td>@item.Role</td>
+                <td>
+                    <a class="btn btn-info" asp-controller="AdminUsers" asp-action="Details" asp-route-id="@item.UserID">Details</a>
+                    <a class="btn btn-warning" asp-controller="AdminUsers" asp-action="Edit" asp-route-id="@item.UserID">Edit</a>
+                    <form asp-controller="AdminUsers" asp-action="Delete" asp-route-id="@item.UserID" method="post" style="display:inline;">
+                        <button type="submit" class="btn btn-danger">Delete</button>
+                    </form>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

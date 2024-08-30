@@ -1,0 +1,41 @@
+﻿@model IEnumerable<SAOnlineMart.Models.OrderItem>
+
+@{
+    ViewData["Title"] = "Order Items";
+}
+
+<h1>Order Items</h1>
+
+<p>
+    <a class="btn btn-primary" asp-controller="AdminOrderItems" asp-action="Create">Create New Order Item</a>
+</p>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Order ID</th>
+            <th>Product ID</th>
+            <th>Quantity</th>
+            <th>Price</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.OrderID</td>
+                <td>@item.ProductID</td>
+                <td>@item.Quantity</td>
+                <td>@item.Price</td>
+                <td>
+                    <a class="btn btn-info" asp-controller="AdminOrderItems" asp-action="Details" asp-route-id="@item.OrderItemID">Details</a>
+                    <a class="btn btn-warning" asp-controller="AdminOrderItems" asp-action="Edit" asp-route-id="@item.OrderItemID">Edit</a>
+                    <form asp-controller="AdminOrderItems" asp-action="Delete" asp-route-id="@item.OrderItemID" method="post" style="display:inline;">
+                        <button type="submit" class="btn btn-danger">Delete</button>
+                    </form>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

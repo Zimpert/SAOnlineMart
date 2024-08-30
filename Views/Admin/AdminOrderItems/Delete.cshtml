@@ -1,0 +1,24 @@
+﻿@model SAOnlineMart.Models.OrderItem
+
+@{
+    ViewData["Title"] = "Delete Order Item";
+}
+
+<h1>Delete Order Item</h1>
+
+<h4>Order Item</h4>
+<hr />
+<div>
+    <h4>Are you sure you want to delete this?</h4>
+    <div>
+        <p>Order ID: @Model.OrderID</p>
+        <p>Product ID: @Model.ProductID</p>
+        <p>Quantity: @Model.Quantity</p>
+        <p>Price: @Model.Price</p>
+    </div>
+    <form asp-action="Delete">
+        <input type="hidden" asp-for="OrderItemID" />
+        <button type="submit" class="btn btn-danger">Delete</button>
+        <a class="btn btn-secondary" asp-controller="AdminOrderItems" asp-action="Index">Cancel</a>
+    </form>
+</div>
