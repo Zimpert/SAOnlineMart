@@ -70,7 +70,7 @@ The application uses ASP.NET Core MVC for the web interface, Entity Framework Co
 
 ## Contributions
 
-If you would like to contribute to this project, please fork the repository and submit a pull request with your changes. For detailed guidelines, refer to the [CONTRIBUTING.md](CONTRIBUTING.md) file.
+If you would like to contribute to this project, please fork the repository and submit a pull request with your changes.
 
 ## Acknowledgements
 
