@@ -223,7 +223,7 @@ namespace SAOnlineMart.Controllers
                     Email = model.Email,
                     Address = model.Address,
                     Phone = model.Phone,
-                    Password = model.Password, // Consider adding password hashing here
+                    Password = model.Password, 
                     Role = model.Role
                 };
 

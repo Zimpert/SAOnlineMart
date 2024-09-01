@@ -21,7 +21,7 @@ namespace SAOnlineMart.Controllers
             return View(await _context.Products.ToListAsync());
         }
 
-        // GET: AdminProducts/Details/5
+        // GET: AdminProducts/Details
         public async Task<IActionResult> Details(int? id)
         {
             if (id == null)
@@ -55,7 +55,7 @@ namespace SAOnlineMart.Controllers
             return View(product);
         }
 
-        // GET: AdminProducts/Edit/5
+        // GET: AdminProducts/Edit
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
@@ -68,7 +68,7 @@ namespace SAOnlineMart.Controllers
             return View(product);
         }
 
-        // POST: AdminProducts/Edit/5
+        // POST: AdminProducts/Edit
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(int id, [Bind("ProductID,Name,Description,Price,StockQuantity,ImageURL")] Product product)
@@ -95,7 +95,7 @@ namespace SAOnlineMart.Controllers
             return View(product);
         }
 
-        // GET: AdminProducts/Delete/5
+        // GET: AdminProducts/Delete
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null)
@@ -109,7 +109,7 @@ namespace SAOnlineMart.Controllers
             return View(product);
         }
 
-        // POST: AdminProducts/Delete/5
+        // POST: AdminProducts/Delete
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)

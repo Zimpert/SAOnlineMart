@@ -62,7 +62,7 @@ namespace SAOnlineMart
 
             app.UseAuthentication();
             app.UseAuthorization();
-            app.UseSession(); // Ensure session middleware is added here
+            app.UseSession();
 
             app.MapControllerRoute(
                 name: "default",

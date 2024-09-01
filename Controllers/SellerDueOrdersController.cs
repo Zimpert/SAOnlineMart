@@ -41,7 +41,7 @@ namespace SAOnlineMart.Controllers
             return View(orderItems);
         }
 
-        // GET: SellerDueOrders/Edit/5
+        // GET: SellerDueOrders/Edit
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
@@ -60,7 +60,7 @@ namespace SAOnlineMart.Controllers
                 return NotFound();
             }
 
-            // Assuming you want to show the first product name (if there are multiple products in the order)
+           
             var firstOrderItem = order.OrderItems.FirstOrDefault();
             if (firstOrderItem == null)
             {
@@ -74,15 +74,15 @@ namespace SAOnlineMart.Controllers
                 Status = order.Status,
                 BuyerAddress = order.User.Address,
                 OrderDate = order.OrderDate,
-                Quantity = firstOrderItem.Quantity, // Assuming you want to show the quantity of the first item
-                Price = firstOrderItem.Price // Assuming you want to show the price of the first item
-                                             // Add other fields as needed
+                Quantity = firstOrderItem.Quantity, 
+                Price = firstOrderItem.Price 
+                                             
             };
 
             return View(viewModel);
         }
 
-        // POST: SellerDueOrders/Edit/5
+        // POST: SellerDueOrders/Edit
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(int id, [Bind("OrderID,Status")] SellerOrderItemViewModel viewModel)

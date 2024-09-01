@@ -50,7 +50,6 @@ namespace SAOnlineMart.Controllers
         }
 
         // POST: Products/Create
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
 
         [HttpPost]
         [ValidateAntiForgeryToken]
@@ -65,7 +64,7 @@ namespace SAOnlineMart.Controllers
             return View(product);
         }
 
-        // GET: Products/Edit/5
+        // GET: Products/Edit
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
@@ -81,8 +80,7 @@ namespace SAOnlineMart.Controllers
             return View(product);
         }
 
-        // POST: Products/Edit/5
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
+        // POST: Products/Edit
 
         [HttpPost]
         [ValidateAntiForgeryToken]

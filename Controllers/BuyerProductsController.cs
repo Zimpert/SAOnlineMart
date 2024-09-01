@@ -102,7 +102,7 @@ namespace SAOnlineMart.Controllers
                 {
                     OrderID = order.OrderID,
                     ProductID = product.ProductID,
-                    Quantity = 1, // Adjust based on your cart structure
+                    Quantity = 1, 
                     Price = product.Price,
                     Order = order,
                     Product = product

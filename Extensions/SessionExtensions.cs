@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Newtonsoft.Json;
 
-namespace SAOnlineMart.Extensions // Adjust the namespace according to your project
+namespace SAOnlineMart.Extensions 
 {
     public static class SessionExtensions
     {

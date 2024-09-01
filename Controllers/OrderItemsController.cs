@@ -55,7 +55,6 @@ namespace SAOnlineMart.Controllers
         }
 
         // POST: OrderItems/Create
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
 
         [HttpPost]
         [ValidateAntiForgeryToken]
@@ -91,7 +90,6 @@ namespace SAOnlineMart.Controllers
         }
 
         // POST: OrderItems/Edit
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
 
         [HttpPost]
         [ValidateAntiForgeryToken]
