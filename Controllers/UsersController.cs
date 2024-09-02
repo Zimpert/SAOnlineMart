@@ -227,7 +227,7 @@ namespace SAOnlineMart.Controllers
                     Role = model.Role
                 };
 
-                _context.Users.Add(user);
+                _context.Users.Add(user);// add user to context
                 await _context.SaveChangesAsync();
 
                 // Redirect to the login page after successful registration
